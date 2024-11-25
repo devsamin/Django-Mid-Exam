@@ -1,0 +1,27 @@
+{% extends "base.html" %} {% load crispy_forms_tags%} {% block content %}
+
+<h5 class="mt-3">welcome, {{request.user}}</h5>
+
+<a class="btn btn-outline-info" href="{% url 'editprofile' %}">Edit Profile</a>
+{% if purchases %}
+<div class="col-12 d-flex flex-wrap mt-5">
+{% for purchase in purchases %}
+  <div class="card mx-3 mt-2" style="width: 300px">
+    <div class="card-body">
+      <img
+        style="max-width: 500px"
+        src="{{purchase.car.car_image.url}}"
+        class="card-img-top"
+        alt="..."
+      />
+      <p><strong>Name : </strong>{{purchase.car.name }}</p>
+      <p><strong>Brand : </strong>{{purchase.car.brand.Brand_Name}}</p>
+      <p><strong>Price : </strong>{{purchase.car.price}}</p>
+      <strong>Purchase Date : </strong>
+        <p>{{purchase.purchase_date}}</p>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+{% endblock content %}
